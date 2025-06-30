@@ -117,4 +117,19 @@ class User
         }
         
     }
+
+    public static function comment($user,$videoid,$comment)
+    {
+        $conn = Database::getConnection();
+        $sql = "INSERT INTO comments (user, videoid, comment,created_at) VALUES (?, ?, ?,Now());";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param('sss',$user,$videoid,$comment);
+        if($stmt->execute())
+        {
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 }

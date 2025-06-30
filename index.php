@@ -114,7 +114,7 @@ $video_infos = User::fetch_video_info();
 
               <!-- Comment Icon -->
               <div style="display: flex; flex-direction: column; align-items: center;">
-                <button class="comment-btn" data-id="<?php echo $video['id']; ?>">💬</button>
+                <button class="comment-btn" data-id="<?php echo $video['id']; ?>" onclick="comments(this)">💬</button>
               </div>
             </div>
           </div>
@@ -168,6 +168,26 @@ $video_infos = User::fetch_video_info();
     .catch(err => {
       console.error("Error:", err);
     });
+  }
+
+
+  function comments(button)
+  {
+    const id = button.getAttribute('data-id')
+    fetch("store_videoid.php",{
+      method:"POST",
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        videoid:id,
+      })
+    })
+    .then(response=>response.json())
+    .then(data=>{
+      console.log("From index server response",data)
+    })
+    .then(()=>{
+      window.location.href = "comment.php"
+    })
   }
   </script>
 </body>
