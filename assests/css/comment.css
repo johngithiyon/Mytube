@@ -88,3 +88,16 @@ body {
 .chat-input button:hover {
   background-color: #0056b3;
 }
+
+.comment-item {
+  padding: 10px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid #ddd;
+}
+.comment-item p {
+  margin: 4px 0;
+}
+.comment-item small {
+  color: gray;
+  font-size: 0.8em;
+}

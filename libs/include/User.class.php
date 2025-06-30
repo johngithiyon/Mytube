@@ -132,4 +132,26 @@ class User
             return false;
         }
     }
+
+    public static function fetch_comment($videoid)
+    {
+        $conn = Database::getConnection();
+        $sql = "SELECT user, comment, created_at FROM comments WHERE videoid = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param('s',$videoid);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if($result->num_rows > 0)
+        {
+            while($row=$result->fetch_assoc())
+            {
+                $comment_data [] = $row;
+            }
+            return $comment_data;
+        }
+        else{
+            return false;
+        }
+
+    }
 }

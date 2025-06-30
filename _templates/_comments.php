@@ -1,6 +1,8 @@
 <?php
 session_start();
 $user = $_SESSION['user'];
+
+$comment_data = User::fetch_comment($_SESSION['videoid'])
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,6 +20,18 @@ $user = $_SESSION['user'];
 
 		<div class="chat-messages" id="chat-box">
 		</div>
+
+		 <!-- Comments Display Section -->
+		 <div class="chat-messages" id="chat-box">
+      <?php foreach ($comment_data as $comment): ?>
+        <div class="comment-item">
+          <strong><?php echo htmlspecialchars($comment['user']); ?>:</strong>
+          <p><?php echo htmlspecialchars($comment['comment']); ?></p>
+          <small><?php echo htmlspecialchars($comment['created_at']); ?></small>
+        </div>
+      <?php endforeach; ?>
+    </div>
+	
 
 		<form class="chat-input">
 			<textarea id="comment" placeholder="Type your message..." required></textarea>

@@ -81,7 +81,7 @@ $video_infos = User::fetch_video_info();
     <aside class="sidebar">
       <ul>
         <li>🏠 Home</li>
-        <li>📱 Shorts</li>
+        <a href=""><li>📱 Shorts</li></a>
         <li>📺 Subscriptions</li>
         <li>📚 Library</li>
         <li>🕒 History</li>

@@ -12,6 +12,7 @@ $comment = $data['comment'];
 
 if(User::comment($user,$videoid,$comment))
 {
+    
     echo json_encode(["status"=>"success"]);
 }
 else{
