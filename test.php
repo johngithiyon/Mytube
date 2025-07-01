@@ -1,12 +1,10 @@
 <?php 
 
-$count = 3;
+$b = 2;
 
-
-if($count%2==0)
+if($b=2)
 {
-        print("unlike");
+    $a = ["apple","bannana"];
 }
-else{
-    print("like");
-}
+
+print_r($a);

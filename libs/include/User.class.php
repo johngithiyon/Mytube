@@ -154,4 +154,36 @@ class User
         }
 
     }
+
+    public static function shorts($user,$video_url)
+    {
+        $conn = Database::getConnection();
+        $sql = "INSERT INTO shorts (user, video_url) VALUES (?,?)";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param('ss',$user,$video_url);
+        if($stmt->execute())
+        {
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public static function shorts_fetch()
+    {
+        $conn = Database::getConnection();
+        $sql = "SELECT video_url FROM shorts";
+        $result = $conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $shorts[] = $row;
+
+            }
+
+            return $shorts;
+
+        }
+    }
 }
